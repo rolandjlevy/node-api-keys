@@ -1,0 +1,1 @@
+- To fix CORS error: install cors package, import and use it in app.use(cors()); 
