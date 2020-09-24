@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
       <li><a href='/view?s=tree'>Trees</a></li>
       <li><a href='/view?s=plant'>Plants</a></li>
       <li><a href='/view?s=house'>Houses</a></li>
+      <li><a href='/view?s=people'>People</a></li>
     </ul>
   `);
 });
@@ -25,7 +26,7 @@ app.get('/json', (req, res) => {
   const query = req.query.s || null;
   if (query) {
     getImages(query).then(output => {
-      res.send(`${JSON.stringify(output.results, null, 2)}`);
+      res.json(output.results);
     });
   } else {
     res.send('Error: no results');
@@ -39,9 +40,10 @@ app.get('/view', (req, res) => {
       res.send(
         `<h3>Unsplash search results</h3>
         <ul>
-          <li>You searched for the term: '${query}'</li>
+          <li>Searched term is: '${query}'</li>
           <li>Returning ${output.total.toLocaleString()} images</li>
           <li><a href='/json?s=${query}'>See results as JSON</a></li>
+          <li><a href='/'>⬅ Back to search</a></li>
         </ul>
         <details>
           <summary style="cursor:pointer;outline:none;">View the first ${PERPAGE} images</summary>
