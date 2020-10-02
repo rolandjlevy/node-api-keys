@@ -10,13 +10,9 @@ const PERPAGE = process.env.PERPAGE;
 const ACCESSKEY = process.env.ACCESSKEY;
 const BASEURL = process.env.BASEURL;
 
-const words = ['fruit', 'vegetables', 'book', 'pencil', 'paper', 'pen', 'laptop', 'website', 'phone', 'house', 'flat', 'garden', 'tree', 'flower', 'plant', 'shop', 'food', 'friend', 'person', 'dog', 'cat', 'cafe', 'restaurant', 'car', 'road', 'art', 'music', 'happy', 'beach', 'holiday', 'tree', 'river', 'mountain', 'bike', 'fitness', 'freedom', 'peace', 'meditation'];
+const { options } = require('./words.js');
 
 app.get('/', (req, res) => {
-  let options = '';
-  words.forEach(word => {
-    options += `<option value="${word}">${word}</option>\n`;
-  });
   res.send(`
     <h3>Search images</h3>
     <select onchange="location='/view?s=' + this.options[this.selectedIndex].value + ''">
@@ -25,13 +21,6 @@ app.get('/', (req, res) => {
     </select>
   `);
 });
-
-    // <ul>
-    //   <li><a href='/view?s=tree'>Trees</a></li>
-    //   <li><a href='/view?s=plant'>Plants</a></li>
-    //   <li><a href='/view?s=house'>Houses</a></li>
-    //   <li><a href='/view?s=people'>People</a></li>
-    // </ul>
 
 app.get('/json', (req, res) => {
   const query = req.query.s || null;
