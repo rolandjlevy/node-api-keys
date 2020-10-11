@@ -14,7 +14,7 @@ const { options } = require('./words.js');
 
 app.get('/', (req, res) => {
   res.send(`
-    <h3>Search for Unsplash images</h3>
+    <h3>Unsplash image search</h3>
     <select onchange="location='/view?s=' + this.options[this.selectedIndex].value + ''">
       <option value="">Select a word...</option>
       ${options}
@@ -45,7 +45,7 @@ app.get('/view', (req, res) => {
           <li><a href='/json?s=${query}'>See results as JSON</a></li>
           <li><a href='/'>⬅ Back to search</a></li>
         </ul>
-        <details>
+        <details open>
           <summary style="cursor:pointer;outline:none;">View the first ${PERPAGE} images</summary>
           ${renderImages(output.results)}
         </details>
