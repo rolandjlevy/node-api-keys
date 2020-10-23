@@ -14,7 +14,7 @@ const { options } = require('./words.js');
 
 app.get('/', (req, res) => {
   res.send(`
-    <h3>Unsplash image search endpoints</h3>
+    <h2>Server endpoints for Unsplash image search</h2>
     <select onchange="location='/view?s=' + this.options[this.selectedIndex].value + ''">
       <option value="">Select a word...</option>
       ${options}
